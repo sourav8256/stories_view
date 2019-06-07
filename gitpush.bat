@@ -1,1 +1,1 @@
-git add . && git commit -m "more changes" && git push bitbucket master
+git add . && git commit -m "more changes" && git push github master
