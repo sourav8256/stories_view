@@ -6,14 +6,14 @@ A new Flutter package for implementing instagram like stories.
 
 ### Including package in project
 
-![Screenshot of dependency addition](https://raw.githubusercontent.com/sourav8256/stories_view/master/screenshots/includingDependency.png)
+![Screenshot of dependency addition](https://raw.githubusercontent.com/sourav8256/stories_view/master/screenshots/includingDependency.PNG)
 
 to include just add it to the dependency like in the above picture
 
 
 ### Using the widget in your project
 
-![Screenshot of implementation](https://raw.githubusercontent.com/sourav8256/stories_view/master/screenshots/includingDependency.png)
+![Screenshot of implementation](https://raw.githubusercontent.com/sourav8256/stories_view/master/screenshots/includingDependency.PNG)
 
 Include these two dependencies at the beginnin of the file say "main.dart"
 
