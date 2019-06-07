@@ -108,11 +108,11 @@ packages:
     source: hosted
     version: "1.9.3"
   stories:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      name: stories
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1"
   stream_channel:
     dependency: transitive

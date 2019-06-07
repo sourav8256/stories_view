@@ -1,8 +1,8 @@
 name: stories
 description: A new Flutter package project.
 version: 0.0.1
-author:
-homepage:
+author: Sourav Mandal<souravmandalm@gmail.com>
+homepage: https://github.com/sourav8256/stories_view
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
