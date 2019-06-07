@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.0] - Beta.
 
-* TODO: Describe initial release.
+* Things seem to be working but not tested properly.
