@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'models/story.dart';
+import 'models/Values.dart';
 
 class StoriesWidget extends StatefulWidget {
   final String profilePicUrl;
@@ -34,13 +35,16 @@ class _StoriesWidgetState extends State<StoriesWidget> {
           Center(
             child: CarouselSlider(
               enlargeCenterPage: true,
-              pauseAutoPlayOnTouch: Duration(seconds: 10),
+              autoPlayInterval: Duration(milliseconds: Values.AUTO_PLAY_INTERVAL),
+              autoPlayAnimationDuration: Duration(milliseconds: Values.ANIMATION_DURATION),
+              pauseAutoPlayOnTouch: Duration(seconds: 7),
               autoPlay: true,
               viewportFraction: 1.0,
               items: getStories(stories),
             ),
           ),
           new Container(
+            // carousel
             width: 70.0,
             height: 70.0,
             margin: EdgeInsets.all(12.0),
@@ -55,6 +59,7 @@ class _StoriesWidgetState extends State<StoriesWidget> {
             ),
           ),
           new Container(
+            // image
             margin: EdgeInsets.only(left: 95.0, top: 20.0),
             child: new Text(
               name,
@@ -65,6 +70,7 @@ class _StoriesWidgetState extends State<StoriesWidget> {
             ),
           ),
           new Container(
+            // name
             margin: EdgeInsets.only(left: 95.0, top: 45.0),
             child: new Text(
               time,
@@ -74,7 +80,10 @@ class _StoriesWidgetState extends State<StoriesWidget> {
               ),
             ),
           ),
-          new ProgressIndicatorDemo(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: getProgressIndicators(stories),
+          ),
         ],
       ),
     );
@@ -108,31 +117,60 @@ class _StoriesWidgetState extends State<StoriesWidget> {
   }
 }
 
-class ProgressIndicatorDemo extends StatefulWidget {
-  @override
-  _ProgressIndicatorDemoState createState() =>
-      new _ProgressIndicatorDemoState();
+List<Widget> getProgressIndicators(List<Story> stories) {
+  List<Widget> progressIndicators = new List();
+
+  for (int i = 0; i < stories.length; i++) {
+    // progressIndicators.add(new Expanded(child: ProgressIndicatorDemo(i.toDouble(),(i+1).toDouble())));
+    progressIndicators.add(
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(1.0,0.0,1.0,0.0),
+          child: ProgressIndicatorDemo(-i.toDouble(),1.0),
+        ),
+      )
+    );
+  }
+
+  return progressIndicators;
 }
 
-class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
-    with SingleTickerProviderStateMixin {
+class ProgressIndicatorDemo extends StatefulWidget {
+  
+  final double start,end;
+
+  ProgressIndicatorDemo(this.start,this.end);
+
+  @override
+  _ProgressIndicatorDemoState createState() => _ProgressIndicatorDemoState(start,end);
+}
+
+class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> animation;
+
+  double start,end;
+  int delay = Values.AUTO_PLAY_INTERVAL;
+
+  _ProgressIndicatorDemoState(this.start,this.end);
 
   @override
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: const Duration(milliseconds: 7000),
+      duration: Duration(milliseconds: delay*(end-start).toInt()),
       vsync: this,
     );
-    animation = Tween(begin: 0.0, end: 1.0).animate(controller)
+    animation = Tween(begin: start, end: end).animate(controller)
       ..addListener(() {
         setState(() {
           // the state that has changed here is the animation object’s value
         });
       });
-    controller.repeat();
+    controller.forward();
+    controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {}
+    });
   }
 
   @override
