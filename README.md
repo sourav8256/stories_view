@@ -3,7 +3,7 @@
 A new Flutter package for implementing instagram like stories.
 
 
-![Screenshot of app with stories plugin](https://raw.githubusercontent.com/sourav8256/stories_view/master/screenshots/app-screenshot.PNG)
+![Screenshot of app with stories plugin](https://raw.githubusercontent.com/sourav8256/stories_view/master/screenshots/app-screenshot.png) 
 
 
 ## Getting Started
